@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-
+using NathanWiles.Nala.IO;
 using NathanWiles.Nala.Lexing;
 using NathanWiles.Nala.Parsing.Nodes;
 
@@ -9,7 +9,7 @@ namespace NathanWiles.Nala.Parsing.NodeBuilders
 {
     public class DeclarationNodeBuilder : ParseNodeBuilder
     {
-        public override ParseNode BuildNode(List<NalaToken> sentence)
+        public override ParseNode BuildNode(List<NalaToken> sentence, IIOContext ioContext)
         {
             DeclarationNode declaration = new DeclarationNode();
 

@@ -3,22 +3,23 @@ using System.Collections.Generic;
 using System.Text;
 
 using NathanWiles.Nala.Errors;
+using NathanWiles.Nala.IO;
 using NathanWiles.Nala.Lexing;
 
 namespace NathanWiles.Nala.Parsing.Rules
 {
     public class ExpressParseRule : ParseRule
     {
-        public override bool Matches(List<NalaToken> expression)
+        public override bool Matches(List<NalaToken> expression, IIOContext ioContext)
         {
-            return IsProper(expression);
+            return IsProper(expression, ioContext);
         }
 
-        public override bool IsProper(List<NalaToken> expression)
+        public override bool IsProper(List<NalaToken> expression, IIOContext ioContext)
         {
             if (expression.Count == 0)
             {
-                new ParseError(this, null, "Expression must have at least one operand.").Report();
+                new ParseError(this, null, "Expression must have at least one operand.").Report(ioContext);
                 return false;
             }
 
@@ -27,7 +28,7 @@ namespace NathanWiles.Nala.Parsing.Rules
 
             while (position < expression.Count)
             {
-                var operand = checkNextOperand(position, expression, out operandLength);
+                var operand = checkNextOperand(position, expression, out operandLength, ioContext);
 
                 position += operandLength;
 
@@ -37,7 +38,7 @@ namespace NathanWiles.Nala.Parsing.Rules
                 //The next token should be an operator.
                 if (!TokenLookups.Operators.Contains(expression[position].value))
                 {
-                    new ParseError(this, expression[position], "Expected arithmatic operator but got " + expression[position].value).Report();
+                    new ParseError(this, expression[position], "Expected arithmatic operator but got " + expression[position].value).Report(ioContext);
                     return false;
                 }
                 else
@@ -50,7 +51,7 @@ namespace NathanWiles.Nala.Parsing.Rules
             return true;
         }
 
-        private NalaToken checkNextOperand(int position, List<NalaToken> expression, out int operandLength)
+        private NalaToken checkNextOperand(int position, List<NalaToken> expression, out int operandLength, IIOContext ioContext)
         {
             NalaToken operand = expression[position];
             operandLength = 1;
@@ -60,7 +61,7 @@ namespace NathanWiles.Nala.Parsing.Rules
                 && operand.type != TokenType.StringLiteral
                 && operand.type != TokenType.BoolLiteral)
             {
-                new ParseError(this, expression[position], "Token of type \"" + operand.type + "\" does not represent a value.").Report();
+                new ParseError(this, expression[position], "Token of type \"" + operand.type + "\" does not represent a value.").Report(ioContext);
                 return null;
             }
 
@@ -76,19 +77,19 @@ namespace NathanWiles.Nala.Parsing.Rules
                 if (expression[position + 2].type != TokenType.Identifier
                     && expression[position + 2].type != TokenType.IntLiteral)
                 {
-                    new ParseError(this, expression[position + 2], "Indexer of type \"" + expression[position + 2].type + "\" does not represent a value.").Report();
+                    new ParseError(this, expression[position + 2], "Indexer of type \"" + expression[position + 2].type + "\" does not represent a value.").Report(ioContext);
                     return null;
                 }
 
                 // We need to make sure the bracket is closed.
-                if (expression[position + 3].value != "]") { new ParseError(this, expression[position + 3], "Expected closing bracket.").Report(); return null; }
+                if (expression[position + 3].value != "]") { new ParseError(this, expression[position + 3], "Expected closing bracket.").Report(ioContext); return null; }
             }
 
             // We have a function invocation.
             if (expression[position + 1].value == "(")
             {
                 // We need to make sure the bracket is closed.
-                if (expression[position + 3].value != ")") { new ParseError(this, expression[position + 3], "Expected ')'.").Report(); return null; }
+                if (expression[position + 3].value != ")") { new ParseError(this, expression[position + 3], "Expected ')'.").Report(ioContext); return null; }
 
                 bool findingParenClose = true;
 

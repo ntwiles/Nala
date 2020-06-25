@@ -6,6 +6,7 @@ using NathanWiles.Nala.Lexing;
 using NathanWiles.Nala.Errors;
 using NathanWiles.Nala.Parsing.NodeBuilders;
 using NathanWiles.Nala.Parsing.Rules;
+using NathanWiles.Nala.IO;
 
 namespace NathanWiles.Nala.Parsing
 {
@@ -14,8 +15,9 @@ namespace NathanWiles.Nala.Parsing
         public bool AbortParse;
 
         private List<ParseBehavior> parseBehaviors;
+        private IIOContext ioContext;
 
-        public Parser()
+        public Parser(IIOContext ioContext)
         {
             parseBehaviors = new List<ParseBehavior>();
 
@@ -58,6 +60,8 @@ namespace NathanWiles.Nala.Parsing
             bvrClear.Rule = new ClearParseRule();
             bvrClear.Builder = new ClearNodeBuilder();
             parseBehaviors.Add(bvrClear);
+
+            this.ioContext = ioContext;
         }
 
         public bool TryProcessTokens(List<NalaToken> tokens, out List<ParseNode> parseTree)
@@ -87,7 +91,7 @@ namespace NathanWiles.Nala.Parsing
 
                 if (node == null && !AbortParse)
                 {
-                    new ParseError(sentence[0], "Unknown sentence.").Report();
+                    new ParseError(sentence[0], "Unknown sentence.").Report(ioContext);
                     AbortParse = true;
                 }
 
@@ -144,9 +148,9 @@ namespace NathanWiles.Nala.Parsing
         {
             foreach (ParseBehavior behavior in parseBehaviors)
             {
-                if (behavior.Rule.Matches(sentence))
+                if (behavior.Rule.Matches(sentence, ioContext))
                 {
-                    return behavior.Builder.BuildNode(sentence);
+                    return behavior.Builder.BuildNode(sentence, ioContext);
                 }
             }
 

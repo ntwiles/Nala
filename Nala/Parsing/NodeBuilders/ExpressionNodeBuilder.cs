@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-
+using NathanWiles.Nala.IO;
 using NathanWiles.Nala.Lexing;
 
 namespace NathanWiles.Nala.Parsing.NodeBuilders
 {
     public class ExpressionNodeBuilder : ParseNodeBuilder
     {
-        public override ParseNode BuildNode(List<NalaToken> expression)
+        public override ParseNode BuildNode(List<NalaToken> expression, IIOContext ioContext)
         {
             ExpressionNode expressionNode = new ExpressionNode();
 

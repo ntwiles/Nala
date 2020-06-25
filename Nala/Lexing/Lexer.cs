@@ -4,18 +4,20 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 using NathanWiles.Nala.Errors;
-
+using NathanWiles.Nala.IO;
 
 namespace NathanWiles.Nala.Lexing
 {
     public class Lexer
     {
-        //private List<NalaToken> tokens;
         public bool AbortLexing;
+        private IIOContext ioContext;
 
-        public Lexer()
+
+        public Lexer(IIOContext ioContext)
         {
             AbortLexing = false;
+            this.ioContext = ioContext;
         }
 
         public bool TryProcessCode(List<string> nalaCodeLines, out List<NalaToken> tokens)
@@ -64,7 +66,7 @@ namespace NathanWiles.Nala.Lexing
 
                         if (stringClosePos == -1)
                         {
-                            new LexerError(il, ic, "All strings must have a closing symbol (\").").Report();
+                            new LexerError(il, ic, "All strings must have a closing symbol (\").").Report(ioContext);
                             return false;
                         }
 
@@ -185,7 +187,7 @@ namespace NathanWiles.Nala.Lexing
             {
                 Regex r = new Regex("^[a-zA-Z0-9]*$");
                 if (r.IsMatch(tokenVal)) tokenType = TokenType.Identifier;
-                else new LexerError(line, column, "Invalid identifier \"" + tokenVal + "\". Identifiers can be comprised only of alphanumeric characters.").Report();
+                else new LexerError(line, column, "Invalid identifier \"" + tokenVal + "\". Identifiers can be comprised only of alphanumeric characters.").Report(ioContext);
             }
 
             addToken(tokens, tokenType, tokenVal, line, column);

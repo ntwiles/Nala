@@ -9,5 +9,7 @@ namespace NalaWeb.Models
     {
         public bool LexingSuccessful { get; set; } = false;
         public bool ParsingSuccessful { get; set; } = false;
+
+        public List<string> Output { get; set; }
     }
 }

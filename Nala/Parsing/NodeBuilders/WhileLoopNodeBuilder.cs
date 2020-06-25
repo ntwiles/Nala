@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-
+using NathanWiles.Nala.IO;
 using NathanWiles.Nala.Lexing;
 
 namespace NathanWiles.Nala.Parsing.NodeBuilders
 {
     public class WhileLoopNodeBuilder : ParseNodeBuilder
     {
-        public override ParseNode BuildNode(List<NalaToken> sentence)
+        public override ParseNode BuildNode(List<NalaToken> sentence, IIOContext ioContext)
         {
             WhileLoopNode condition = new WhileLoopNode();
 
@@ -27,12 +27,12 @@ namespace NathanWiles.Nala.Parsing.NodeBuilders
             }
 
             List<NalaToken> betweenParens = sentence.GetRange(openParenPos, closeParenPos - openParenPos);
-            condition.expression = (ExpressionNode)(new ExpressionNodeBuilder().BuildNode(betweenParens));
+            condition.expression = (ExpressionNode)(new ExpressionNodeBuilder().BuildNode(betweenParens, ioContext));
 
-            var parser = new Parser();
+            var parser = new Parser(ioContext);
             List<NalaToken> afterOpeningBrace = parser.GetNextSentence(closeParenPos + 2, sentence, true);
 
-            // TODO: We're not doing anything here if the parse fails. Is that okay here?
+            // TODO: We're not doing anything here if the parse fails.
             parser.TryProcessTokens(afterOpeningBrace, out condition.gotoLoop);
 
             return condition;

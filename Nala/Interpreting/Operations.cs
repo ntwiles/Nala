@@ -4,13 +4,14 @@ using System.Collections.Generic;
 using NathanWiles.Nala.Parsing;
 using NathanWiles.Nala.Parsing.Nodes;
 using NathanWiles.Nala.Errors;
+using NathanWiles.Nala.IO;
 
 namespace NathanWiles.Nala.Interpreting
 {
     public static class Operations
     {
         // Assignment Operations
-        public static void DoAssign(Scope scope, AssignmentNode assign, object value)
+        public static void DoAssign(Scope scope, AssignmentNode assign, object value, IIOContext ioContext)
         {
             string identifier = assign.identifier.name;
             object currentVal = scope.GetValue(identifier);
@@ -20,7 +21,7 @@ namespace NathanWiles.Nala.Interpreting
                 if (currentVal.GetType().GetElementType() != value.GetType())
                 {
                     new RuntimeError("Cannot assign value of type \"" + value.GetType() +
-                        "\" to variable \"" + identifier + "\" of type \"" + currentVal.GetType() + "\"").Report();
+                        "\" to variable \"" + identifier + "\" of type \"" + currentVal.GetType() + "\"").Report(ioContext);
                     return;
                 }
             }
@@ -29,7 +30,7 @@ namespace NathanWiles.Nala.Interpreting
                 if (currentVal.GetType() != value.GetType())
                 {
                     new RuntimeError("Cannot assign value of type \"" + value.GetType() +
-                        "\" to variable \"" + identifier + "\" of type \"" + currentVal.GetType() + "\"").Report();
+                        "\" to variable \"" + identifier + "\" of type \"" + currentVal.GetType() + "\"").Report(ioContext);
                     return;
                 }
             }
@@ -37,7 +38,7 @@ namespace NathanWiles.Nala.Interpreting
             switch (assign.@operator.symbol)
             {
                 case "=": doDefaultAssign(scope, assign, value); break;
-                case "+=": doPlusEqualsAssign(scope, assign, value); break;
+                case "+=": doPlusEqualsAssign(scope, assign, value, ioContext); break;
                 case "*=": doTimesEqualsAssign(scope, assign, value); break;
                 case "/=": doDivideByEqualsAssign(scope, assign, value); break;
                 default: throw new NotImplementedException();
@@ -85,7 +86,7 @@ namespace NathanWiles.Nala.Interpreting
             }
         }
 
-        private static void doPlusEqualsAssign(Scope scope, AssignmentNode assign, object resolved)
+        private static void doPlusEqualsAssign(Scope scope, AssignmentNode assign, object resolved, IIOContext ioContext)
         {
             string identifier = assign.identifier.name;
             object currentVal = scope.GetValue(identifier);
@@ -110,7 +111,7 @@ namespace NathanWiles.Nala.Interpreting
                         }
                     case bool[] b:
                         {
-                            new RuntimeError("Cannot use operator \"+=\" on bool values.").Report(); return;
+                            new RuntimeError("Cannot use operator \"+=\" on bool values.").Report(ioContext); return;
                         }
                     default:
                         {
@@ -124,7 +125,7 @@ namespace NathanWiles.Nala.Interpreting
                 {
                     case int i: scope.SetValue(identifier,(int)currentVal + (int)resolved); break;
                     case string s: scope.SetValue(identifier,(string)currentVal + (string)resolved); break;
-                    case bool b: new RuntimeError("Cannot use operator \"+=\" on bool values.").Report(); return;
+                    case bool b: new RuntimeError("Cannot use operator \"+=\" on bool values.").Report(ioContext); return;
                 }
             }
         }
@@ -149,34 +150,34 @@ namespace NathanWiles.Nala.Interpreting
             return null;
         }
 
-        public static object DoSubtract(object leftOperand, object rightOperand)
+        public static object DoSubtract(object leftOperand, object rightOperand, IIOContext ioContext)
         {
             if (leftOperand is int) return (int)leftOperand - (int)rightOperand;
             if (leftOperand is string)
             {
-                new RuntimeError("Cannot use \"-\" operator between two strings.").Report();
+                new RuntimeError("Cannot use \"-\" operator between two strings.").Report(ioContext);
             }
 
             return null;
         }
 
-        public static object DoMultiply(object leftOperand, object rightOperand)
+        public static object DoMultiply(object leftOperand, object rightOperand, IIOContext ioContext)
         {
             if (leftOperand is int) return (int)leftOperand * (int)rightOperand;
             if (leftOperand is string)
             {
-                new RuntimeError("Cannot use \"*\" operator between two strings.").Report();
+                new RuntimeError("Cannot use \"*\" operator between two strings.").Report(ioContext);
             }
 
             return null;
         }
 
-        public static object DoDivide(object leftOperand, object rightOperand)
+        public static object DoDivide(object leftOperand, object rightOperand, IIOContext ioContext)
         {
             if (leftOperand is int) return (int)leftOperand / (int)rightOperand;
             if (leftOperand is string)
             {
-                new RuntimeError("Cannot use \"/\" operator between two strings.").Report();
+                new RuntimeError("Cannot use \"/\" operator between two strings.").Report(ioContext);
             }
 
             return null;
@@ -184,29 +185,29 @@ namespace NathanWiles.Nala.Interpreting
 
         // Comparison Operations
 
-        public static bool DoComparison(string symbol, object leftOperand, object rightOperand)
+        public static bool DoComparison(string symbol, object leftOperand, object rightOperand, IIOContext ioContext)
         {
             switch (symbol)
             {
-                case "==": return doEqualsComparison(leftOperand, rightOperand);
-                case "!=": return doNotEqualsComparison(leftOperand, rightOperand);
-                case  ">": return doGreaterThanComparison(leftOperand, rightOperand);
-                case  "<": return doLessThanComparison(leftOperand, rightOperand);
-                case ">=": return doGreaterThanOrEqualToComparison(leftOperand, rightOperand);
+                case "==": return doEqualsComparison(leftOperand, rightOperand, ioContext);
+                case "!=": return doNotEqualsComparison(leftOperand, rightOperand, ioContext);
+                case  ">": return doGreaterThanComparison(leftOperand, rightOperand, ioContext);
+                case  "<": return doLessThanComparison(leftOperand, rightOperand, ioContext);
+                case ">=": return doGreaterThanOrEqualToComparison(leftOperand, rightOperand, ioContext);
                 case "<=": return (float)leftOperand <= (float)rightOperand;
                 default:
                     {
-                        new RuntimeError("Cannot perform comparisons using \"" + symbol + "\" operator.").Report();
+                        new RuntimeError("Cannot perform comparisons using \"" + symbol + "\" operator.").Report(ioContext);
                         return false;
                     }
             }
         }
         
-        private static bool doEqualsComparison(object leftOperand, object rightOperand)
+        private static bool doEqualsComparison(object leftOperand, object rightOperand, IIOContext ioContext)
         {
             if (leftOperand.GetType() != rightOperand.GetType()!)
             {
-                new RuntimeError("Cannot compare between types \"" + leftOperand.GetType() + "\" and \"" + rightOperand.GetType() + "\".").Report();
+                new RuntimeError("Cannot compare between types \"" + leftOperand.GetType() + "\" and \"" + rightOperand.GetType() + "\".").Report(ioContext);
                 return false;
             }
 
@@ -220,11 +221,11 @@ namespace NathanWiles.Nala.Interpreting
             return leftOperand == rightOperand;
         }
 
-        private static bool doNotEqualsComparison(object leftOperand, object rightOperand)
+        private static bool doNotEqualsComparison(object leftOperand, object rightOperand, IIOContext ioContext)
         {
             if (leftOperand.GetType() != rightOperand.GetType()!)
             {
-                new RuntimeError("Cannot compare between types \"" + leftOperand.GetType() + "\" and \"" + rightOperand.GetType() + "\".").Report();
+                new RuntimeError("Cannot compare between types \"" + leftOperand.GetType() + "\" and \"" + rightOperand.GetType() + "\".").Report(ioContext);
                 return false;
             }
 
@@ -238,55 +239,55 @@ namespace NathanWiles.Nala.Interpreting
             return leftOperand == rightOperand;
         }
 
-        private static bool doLessThanComparison(object leftOperand, object rightOperand)
+        private static bool doLessThanComparison(object leftOperand, object rightOperand, IIOContext ioContext)
         {
             if (leftOperand.GetType() != rightOperand.GetType()!)
             {
-                new RuntimeError("Cannot compare between types \"" + leftOperand.GetType() + "\" and \"" + rightOperand.GetType() + "\".").Report();
+                new RuntimeError("Cannot compare between types \"" + leftOperand.GetType() + "\" and \"" + rightOperand.GetType() + "\".").Report(ioContext);
                 return false;
             }
 
             switch (leftOperand)
             {
-                case bool b: new RuntimeError("Cannot use operator < between boolean values.").Report(); return false;
+                case bool b: new RuntimeError("Cannot use operator < between boolean values.").Report(ioContext); return false;
                 case int i: return (int)leftOperand < (int)rightOperand;
-                case string s:  new RuntimeError("Cannot use operator < between string values.").Report(); return false;
+                case string s:  new RuntimeError("Cannot use operator < between string values.").Report(ioContext); return false;
             }
 
             return false;
         }
 
-        private static bool doGreaterThanComparison(object leftOperand, object rightOperand)
+        private static bool doGreaterThanComparison(object leftOperand, object rightOperand, IIOContext ioContext)
         {
             if (leftOperand.GetType() != rightOperand.GetType()!)
             {
-                new RuntimeError("Cannot compare between types \"" + leftOperand.GetType() + "\" and \"" + rightOperand.GetType() + "\".").Report();
+                new RuntimeError("Cannot compare between types \"" + leftOperand.GetType() + "\" and \"" + rightOperand.GetType() + "\".").Report(ioContext);
                 return false;
             }
 
             switch (leftOperand)
             {
-                case bool b: new RuntimeError("Cannot use operator > between boolean values.").Report(); return false;
+                case bool b: new RuntimeError("Cannot use operator > between boolean values.").Report(ioContext); return false;
                 case int i: return (int)leftOperand > (int)rightOperand;
-                case string s: new RuntimeError("Cannot use operator > between string values.").Report(); return false;
+                case string s: new RuntimeError("Cannot use operator > between string values.").Report(ioContext); return false;
             }
 
             return false;
         }
 
-        private static bool doGreaterThanOrEqualToComparison(object leftOperand, object rightOperand)
+        private static bool doGreaterThanOrEqualToComparison(object leftOperand, object rightOperand, IIOContext ioContext)
         {
             if (leftOperand.GetType() != rightOperand.GetType()!)
             {
-                new RuntimeError("Cannot compare between types \"" + leftOperand.GetType() + "\" and \"" + rightOperand.GetType() + "\".").Report();
+                new RuntimeError("Cannot compare between types \"" + leftOperand.GetType() + "\" and \"" + rightOperand.GetType() + "\".").Report(ioContext);
                 return false;
             }
 
             switch (leftOperand)
             {
-                case bool b: new RuntimeError("Cannot use operator >= between boolean values.").Report(); return false;
+                case bool b: new RuntimeError("Cannot use operator >= between boolean values.").Report(ioContext); return false;
                 case int i: return (int)leftOperand >= (int)rightOperand;
-                case string s:  new RuntimeError("Cannot use operator >= between string values.").Report(); return false;
+                case string s:  new RuntimeError("Cannot use operator >= between string values.").Report(ioContext); return false;
             }
 
             return false;

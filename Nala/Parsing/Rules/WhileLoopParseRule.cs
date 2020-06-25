@@ -4,23 +4,24 @@ using System.Text;
 
 using NathanWiles.Nala.Lexing;
 using NathanWiles.Nala.Errors;
+using NathanWiles.Nala.IO;
 
 namespace NathanWiles.Nala.Parsing.Rules
 {
     public class WhileLoopParseRule : ParseRule
     {
-        public override bool Matches(List<NalaToken> sentence)
+        public override bool Matches(List<NalaToken> sentence, IIOContext ioContext)
         {
             var token = sentence[0];
             if (token.value == "while")
             {
-                return IsProper(sentence);
+                return IsProper(sentence, ioContext);
             }
 
             return false;
         }
 
-        public override bool IsProper(List<NalaToken> sentence)
+        public override bool IsProper(List<NalaToken> sentence, IIOContext ioContext)
         {
             int openParenPos = 0, closeParenPos = 0;
 
@@ -37,7 +38,7 @@ namespace NathanWiles.Nala.Parsing.Rules
 
             List<NalaToken> betweenParens = sentence.GetRange(openParenPos, closeParenPos - openParenPos);
 
-            if (!(new ExpressParseRule().Matches(betweenParens))) return false;
+            if (!(new ExpressParseRule().Matches(betweenParens, ioContext))) return false;
 
             return true;
         }

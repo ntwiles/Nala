@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
+using NalaCLI;
 
 namespace NathanWiles.Nala
 {
@@ -31,7 +32,7 @@ namespace NathanWiles.Nala
             }
 
             // Run nala code.
-            var nala = new Nala(nalaCodeLines);
+            var nala = new Nala(nalaCodeLines, new CliIOContext());
             bool success = nala.Run();
             if (!success) Console.ReadKey();
         }

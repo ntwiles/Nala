@@ -11,6 +11,7 @@ using NathanWiles.Nala.Lexing;
 using NathanWiles.Nala.Parsing;
 
 using NalaWeb.Models;
+using NathanWiles.Nala.IO;
 
 namespace NalaWeb.Controllers
 {
@@ -30,8 +31,9 @@ namespace NalaWeb.Controllers
         [HttpPost]
         public NalaResult TestNala(NalaCode code)
         {
-            Lexer lexer = new Lexer();
-            Parser parser = new Parser();
+            WebIOContext webIO = new WebIOContext();
+            Lexer lexer = new Lexer(webIO);
+            Parser parser = new Parser(webIO);
             NalaResult result = new NalaResult();
 
             List<NalaToken> tokens = null;
@@ -45,6 +47,8 @@ namespace NalaWeb.Controllers
             {
                 result.ParsingSuccessful = parser.TryProcessTokens(tokens, out parseNodes);
             }
+
+            result.Output = webIO.Output;
             
             return result;
         }

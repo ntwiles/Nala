@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-
+using NathanWiles.Nala.IO;
 using NathanWiles.Nala.Lexing;
 using NathanWiles.Nala.Parsing.Nodes;
 
@@ -9,7 +9,7 @@ namespace NathanWiles.Nala.Parsing.NodeBuilders
 {
     public class AssignNodeBuilder : ParseNodeBuilder
     {
-        public override ParseNode BuildNode(List<NalaToken> sentence)
+        public override ParseNode BuildNode(List<NalaToken> sentence, IIOContext ioContext)
         {
             AssignmentNode assign = new AssignmentNode();
 
@@ -36,7 +36,7 @@ namespace NathanWiles.Nala.Parsing.NodeBuilders
                 afterOperator = sentence.GetRange(5, sentence.Count - 5);
             }
 
-            assign.expression = (ExpressionNode)(new ExpressionNodeBuilder().BuildNode(afterOperator));
+            assign.expression = (ExpressionNode)(new ExpressionNodeBuilder().BuildNode(afterOperator, ioContext));
 
             return assign;
         }

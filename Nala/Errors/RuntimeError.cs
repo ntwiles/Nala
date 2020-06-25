@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NathanWiles.Nala.IO;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -13,9 +14,9 @@ namespace NathanWiles.Nala.Errors
             _message = message;
         }
 
-        public void Report()
+        public void Report(IIOContext ioContext)
         {
-            Console.WriteLine("Nala Runtime Error: " + _message);
+            ioContext.WriteLine("Nala Runtime Error: " + _message);
         }
     }
 

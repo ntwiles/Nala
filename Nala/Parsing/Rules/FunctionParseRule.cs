@@ -3,30 +3,31 @@ using System.Collections.Generic;
 using System.Text;
 
 using NathanWiles.Nala.Errors;
+using NathanWiles.Nala.IO;
 using NathanWiles.Nala.Lexing;
 
 namespace NathanWiles.Nala.Parsing.Rules
 {
     public class FunctionParseRule : ParseRule
     {
-        public override bool Matches(List<NalaToken> sentence)
+        public override bool Matches(List<NalaToken> sentence, IIOContext ioContext)
         {
             var token = sentence[0];
             if (token.value == "func")
             {
-                return IsProper(sentence);
+                return IsProper(sentence, ioContext);
             }
 
             return false;
         }
 
-        public override bool IsProper(List<NalaToken> sentence)
+        public override bool IsProper(List<NalaToken> sentence, IIOContext ioContext)
         {
             // The second element of a function should always be an identifier token.
-            if (sentence[1].type != TokenType.Identifier) { new ParseError(this, sentence[1], "Expected identifier.").Report(); return false; }
+            if (sentence[1].type != TokenType.Identifier) { new ParseError(this, sentence[1], "Expected identifier.").Report(ioContext); return false; }
 
             // The third element of a function should always be a '(' character.
-            if (sentence[2].value != "(") { new ParseError(this, sentence[2], "Expected '(' character.").Report(); return false; }
+            if (sentence[2].value != "(") { new ParseError(this, sentence[2], "Expected '(' character.").Report(ioContext); return false; }
 
             int openParenPos = 2, closeParenPos = 0;
 
@@ -42,7 +43,7 @@ namespace NathanWiles.Nala.Parsing.Rules
 
             List<NalaToken> betweenParens = sentence.GetRange(openParenPos, closeParenPos - openParenPos);
 
-            if (!(new ParamsParseRule().Matches(betweenParens))) return false;
+            if (!(new ParamsParseRule().Matches(betweenParens, ioContext))) return false;
 
             return true;
         }

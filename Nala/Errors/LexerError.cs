@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NathanWiles.Nala.IO;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -15,9 +16,9 @@ namespace NathanWiles.Nala.Errors
             _column = column;
             _message = message;
         }
-        public void Report()
+        public void Report(IIOContext ioContext)
         {
-            Console.WriteLine("Nala Lexer Error: Line " + _line + " column " + _column + " : " + _message);
+            ioContext.WriteLine("Nala Lexer Error: Line " + _line + " column " + _column + " : " + _message);
         }
     }
 }

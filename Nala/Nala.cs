@@ -5,23 +5,26 @@ using System.Text;
 using NathanWiles.Nala.Lexing;
 using NathanWiles.Nala.Parsing;
 using NathanWiles.Nala.Interpreting;
+using NathanWiles.Nala.IO;
 
 namespace NathanWiles.Nala
 {
     public class Nala
     {
         private List<string> codeLines;
+        private IIOContext ioContext;
 
-        public Nala(List<string> codeLines)
+        public Nala(List<string> codeLines, IIOContext ioContext)
         {
             this.codeLines = codeLines;
+            this.ioContext = ioContext;
         }
 
         public bool Run()
         {
-            var lexer = new Lexer();
-            var parser = new Parser();
-            var interpreter = new Interpreter();
+            var lexer = new Lexer(ioContext);
+            var parser = new Parser(ioContext);
+            var interpreter = new Interpreter(ioContext);
 
             List<NalaToken> nalaTokens = null;
             List<ParseNode> nalaParseTree = null;
@@ -37,8 +40,8 @@ namespace NathanWiles.Nala
             }
             catch (Exception e)
             {
-                Console.WriteLine("Lexer exception:");
-                Console.WriteLine(e.Message);
+                ioContext.WriteLine("Lexer exception:");
+                ioContext.WriteLine(e.Message);
                 return false;
             }
 
@@ -50,8 +53,8 @@ namespace NathanWiles.Nala
             }
             catch (Exception e)
             {
-                Console.WriteLine("Parser exception:");
-                Console.WriteLine(e.Message);
+                ioContext.WriteLine("Parser exception:");
+                ioContext.WriteLine(e.Message);
                 return false;
             }
 
@@ -62,8 +65,8 @@ namespace NathanWiles.Nala
             }
             catch (Exception e)
             {
-                Console.WriteLine("Interpreter exception:");
-                Console.WriteLine(e.Message);
+                ioContext.WriteLine("Interpreter exception:");
+                ioContext.WriteLine(e.Message);
             }
 
             return false;

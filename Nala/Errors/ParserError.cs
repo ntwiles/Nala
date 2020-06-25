@@ -5,6 +5,7 @@ using NathanWiles.Nala.Lexing;
 using NathanWiles.Nala.Parsing.Rules;
 using NathanWiles.Nala.Interpreting;
 using System.Runtime;
+using NathanWiles.Nala.IO;
 
 namespace NathanWiles.Nala.Errors
 {
@@ -40,9 +41,9 @@ namespace NathanWiles.Nala.Errors
             _errorOut = "Nala Parse Rule Error: Malformed " + parseType + " at line " + (token.line + 1) + " column " + token.column + ": " + message;
         }
 
-        public void Report()
+        public void Report(IIOContext ioContext)
         {
-            Console.WriteLine(_errorOut);
+            ioContext.WriteLine(_errorOut);
         }
     }
 }
