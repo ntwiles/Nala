@@ -37,16 +37,13 @@ namespace NalaWeb.Controllers
             List<NalaToken> tokens = null;
             List<ParseNode> parseNodes = null;
 
-            bool parsingSucceeded = false;
-
             List<string> lines = code.Content.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None).ToList<string>();
 
-            tokens = lexer.ProcessCode(lines);
+            result.LexingSuccessful = lexer.TryProcessCode(lines, out tokens);
 
-            if (tokens != null)
+            if (result.LexingSuccessful)
             {
-                result.LexingSuccessful = true;
-                result.ParsingSuccessful = parser.ProcessTokens(tokens, out parseNodes);
+                result.ParsingSuccessful = parser.TryProcessTokens(tokens, out parseNodes);
             }
             
             return result;

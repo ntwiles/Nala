@@ -10,20 +10,21 @@ namespace NathanWiles.Nala.Lexing
 {
     public class Lexer
     {
-        private List<NalaToken> tokens;
+        //private List<NalaToken> tokens;
         public bool AbortLexing;
 
         public Lexer()
         {
-            tokens = new List<NalaToken>();
             AbortLexing = false;
         }
 
-        public List<NalaToken> ProcessCode(List<string> nalaCodeLines)
+        public bool TryProcessCode(List<string> nalaCodeLines, out List<NalaToken> tokens)
         {
             List<char> emptyChars = new List<char> { '\t', '\n', '\r', ' ' };
             List<char> operatorChars = new List<char> { '+', '-', '*', '/', '=', '>', '<', '!', ';',',','(',')','[',']'};
             List<char> loneleyOperatorChars = new List<char> { '(', ')', '[', ']', };
+
+            tokens = new List<NalaToken>();
 
             string token = "";
 
@@ -43,7 +44,7 @@ namespace NathanWiles.Nala.Lexing
                     {
                         if (token != "")
                         {
-                            addToken(token, il, ic);
+                            addToken(tokens,token, il, ic);
                             token = "";
                         }
 
@@ -64,11 +65,11 @@ namespace NathanWiles.Nala.Lexing
                         if (stringClosePos == -1)
                         {
                             new LexerError(il, ic, "All strings must have a closing symbol (\").").Report();
-                            return null;
+                            return false;
                         }
 
                         string stringChars = nalaLine.Substring(ic + 1, stringClosePos - (ic + 1));
-                        addToken(TokenType.StringLiteral, stringChars,il,ic);
+                        addToken(tokens, TokenType.StringLiteral, stringChars,il,ic);
 
                         ic = stringClosePos;
                         continue;
@@ -80,19 +81,19 @@ namespace NathanWiles.Nala.Lexing
                         char nextChar = ic < nalaLine.Length - 1 ? nalaLine[ic + 1] : 'z';
                         bool nextCharIsOperator = operatorChars.Contains(nextChar);
 
-                        addToken(token, il, ic);
+                        addToken(tokens,token, il, ic);
 
                         //The following operators should exist in their own token even if adjacent to another operator.
                         if (loneleyOperatorChars.Contains(@char))
                         {
-                            addToken("" + @char, il, ic);
+                            addToken(tokens,"" + @char, il, ic);
                             token = "";
                             continue;
                         }
                         else if (nextCharIsOperator)
                         {
                             string twoCharOperator = "" + @char + nextChar;
-                            addToken(twoCharOperator, il, ic);
+                            addToken(tokens,twoCharOperator, il, ic);
                             token = "";
 
                             ic += 1;
@@ -100,7 +101,7 @@ namespace NathanWiles.Nala.Lexing
                         }
                         else
                         {
-                            addToken(""+@char, il, ic);
+                            addToken(tokens,""+@char, il, ic);
                             token = "";
                             continue;
                         }
@@ -109,24 +110,24 @@ namespace NathanWiles.Nala.Lexing
                     //If it's none of the above, it's build the token normally.
                     token += @char;
                    
-                    if (AbortLexing) { return null; }
+                    if (AbortLexing) { return false; }
                 }
 
-                addToken(token,il,0);
+                addToken(tokens,token,il,0);
                 token = "";
 
-                if (AbortLexing) { return null; }
+                if (AbortLexing) { return false; }
             }
 
-            return tokens;
+            return true;
         }
         
-        private void addToken(TokenType tokenType, string tokenVal, int line, int column)
+        private void addToken(List<NalaToken> tokens, TokenType tokenType, string tokenVal, int line, int column)
         {
             tokens.Add(new NalaToken(tokenType, tokenVal, line, column));
         }
 
-        private void addToken(string tokenVal, int line, int column)
+        private void addToken(List<NalaToken> tokens, string tokenVal, int line, int column)
         {
             if (tokenVal == "") return;
 
@@ -187,7 +188,7 @@ namespace NathanWiles.Nala.Lexing
                 else new LexerError(line, column, "Invalid identifier \"" + tokenVal + "\". Identifiers can be comprised only of alphanumeric characters.").Report();
             }
 
-            addToken(tokenType, tokenVal, line, column);
+            addToken(tokens, tokenType, tokenVal, line, column);
         }
     }
 

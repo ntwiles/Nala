@@ -60,7 +60,7 @@ namespace NathanWiles.Nala.Parsing
             parseBehaviors.Add(bvrClear);
         }
 
-        public bool ProcessTokens(List<NalaToken> tokens, out List<ParseNode> parseTree)
+        public bool TryProcessTokens(List<NalaToken> tokens, out List<ParseNode> parseTree)
         {
             if (tokens.Count < 1)
             {

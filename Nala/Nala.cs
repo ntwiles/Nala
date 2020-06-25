@@ -26,10 +26,14 @@ namespace NathanWiles.Nala
             List<NalaToken> nalaTokens = null;
             List<ParseNode> nalaParseTree = null;
 
+            bool lexingSucceeded = false;
+            bool parsingSucceeded = false;
+
             // Lex code into tokens.
             try
             {
-                nalaTokens = lexer.ProcessCode(codeLines);
+                lexingSucceeded = lexer.TryProcessCode(codeLines, out nalaTokens);
+                if (!lexingSucceeded) { return false; }
             }
             catch (Exception e)
             {
@@ -38,23 +42,18 @@ namespace NathanWiles.Nala
                 return false;
             }
 
-            if (nalaTokens == null) { return false; }
-
-            bool lexingSucceeded = false;
-            bool parsingSucceeded = false;
-
             // Parse tokens into parse tree.
             try
             {
-                parsingSucceeded = parser.ProcessTokens(nalaTokens, out nalaParseTree);
+                parsingSucceeded = parser.TryProcessTokens(nalaTokens, out nalaParseTree);
+                if (!parsingSucceeded) { return false; }
             }
             catch (Exception e)
             {
                 Console.WriteLine("Parser exception:");
                 Console.WriteLine(e.Message);
+                return false;
             }
-
-            if (!parsingSucceeded) { return false; }
 
             // Execute parse tree.
             try
