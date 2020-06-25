@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "juX2cIz/qXUvC1Sa16wif9OY9F2Fnz00WtB/OLzt8Gi52tes38bnKsw5RdDy05Y2stkn2jGN3Hg0hcXUSNqTAw==",
+  "dgSpecHash": "KAkcPRDqI/73UTaOLHZ0yDnC1GZjlonU+1o91gh34Rs8/Cf72tEExObggwpzwH2u/PrVUflweuKQasAwxR27ag==",
   "success": true,
-  "projectFilePath": "D:\\OneDrive\\Development\\C#\\Nala\\LRParser\\LRParser.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\Student\\workspace\\nala\\LRParser\\LRParser.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Student\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.2\\microsoft.aspnetcore.app.ref.3.1.2.nupkg.sha512"
+  ],
   "logs": []
 }

@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "weSkU43rdK2e0RmY8sA2JuyMThlbDF0IGLHq8XFuXWVp01auQfB+nEgc3jA9Q31EsDwEzK/+oxCDyReu2DCipQ==",
+  "dgSpecHash": "dcW974fhWwh2VRS02ZOdKEE9UpeG6NEO2HL6Zp4EnqTDoYg6Z/9wk/WBh78RwG8JsB4HlqkKiQgb5B41QQkXIA==",
   "success": true,
-  "projectFilePath": "D:\\OneDrive\\Development\\C#\\Nala\\NalaCLI\\NalaCLI.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\Student\\workspace\\nala\\NalaCLI\\NalaCLI.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Student\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\3.1.2\\microsoft.aspnetcore.app.ref.3.1.2.nupkg.sha512"
+  ],
   "logs": []
 }

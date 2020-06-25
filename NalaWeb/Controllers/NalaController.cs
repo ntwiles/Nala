@@ -9,9 +9,10 @@ using Microsoft.Extensions.Options;
 
 using NathanWiles.Nala.Lexing;
 using NathanWiles.Nala.Parsing;
+using NathanWiles.Nala.IO;
+using NathanWiles.Nala;
 
 using NalaWeb.Models;
-using NathanWiles.Nala.IO;
 
 namespace NalaWeb.Controllers
 {
@@ -32,21 +33,30 @@ namespace NalaWeb.Controllers
         public NalaResult TestNala(NalaCode code)
         {
             WebIOContext webIO = new WebIOContext();
+            NalaResult result = new NalaResult();
+
+            List<string> lines = code.Content.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None).ToList<string>();
+
+            /*
             Lexer lexer = new Lexer(webIO);
             Parser parser = new Parser(webIO);
-            NalaResult result = new NalaResult();
 
             List<NalaToken> tokens = null;
             List<ParseNode> parseNodes = null;
 
-            List<string> lines = code.Content.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None).ToList<string>();
+
 
             result.LexingSuccessful = lexer.TryProcessCode(lines, out tokens);
+
 
             if (result.LexingSuccessful)
             {
                 result.ParsingSuccessful = parser.TryProcessTokens(tokens, out parseNodes);
             }
+            */
+
+            Nala nala = new Nala(lines, webIO);
+            nala.Run();
 
             result.Output = webIO.Output;
             

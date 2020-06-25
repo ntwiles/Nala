@@ -27,23 +27,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\ntwil\\.nuget\\packages\\": {},
+    "C:\\Users\\Student\\.nuget\\packages\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\OneDrive\\Development\\C#\\Nala\\NalaWeb\\NalaWeb.csproj",
+      "projectUniqueName": "C:\\Users\\Student\\workspace\\nala\\NalaWeb\\NalaWeb.csproj",
       "projectName": "NalaWeb",
-      "projectPath": "D:\\OneDrive\\Development\\C#\\Nala\\NalaWeb\\NalaWeb.csproj",
-      "packagesPath": "C:\\Users\\ntwil\\.nuget\\packages\\",
-      "outputPath": "D:\\OneDrive\\Development\\C#\\Nala\\NalaWeb\\obj\\",
+      "projectPath": "C:\\Users\\Student\\workspace\\nala\\NalaWeb\\NalaWeb.csproj",
+      "packagesPath": "C:\\Users\\Student\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Student\\workspace\\nala\\NalaWeb\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\ntwil\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Student\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -56,8 +56,8 @@
       "frameworks": {
         "netcoreapp3.1": {
           "projectReferences": {
-            "D:\\OneDrive\\Development\\C#\\Nala\\Nala\\Nala.csproj": {
-              "projectPath": "D:\\OneDrive\\Development\\C#\\Nala\\Nala\\Nala.csproj"
+            "C:\\Users\\Student\\workspace\\nala\\Nala\\Nala.csproj": {
+              "projectPath": "C:\\Users\\Student\\workspace\\nala\\Nala\\Nala.csproj"
             }
           }
         }
@@ -80,6 +80,12 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[3.1.2, 3.1.2]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -88,7 +94,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.301\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.300\\RuntimeIdentifierGraph.json"
       }
     }
   }
