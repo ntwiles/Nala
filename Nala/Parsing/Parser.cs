@@ -60,11 +60,15 @@ namespace NathanWiles.Nala.Parsing
             parseBehaviors.Add(bvrClear);
         }
 
-        public List<ParseNode> ProcessTokens(List<NalaToken> tokens)
+        public bool ProcessTokens(List<NalaToken> tokens, out List<ParseNode> parseTree)
         {
-            if (tokens.Count < 1) return null;
+            if (tokens.Count < 1)
+            {
+                parseTree = null;
+                return false;
+            }
 
-            List<ParseNode> parseTree = new List<ParseNode>();
+            parseTree = new List<ParseNode>();
 
             bool parsing = true;
             int position = 0;
@@ -87,12 +91,12 @@ namespace NathanWiles.Nala.Parsing
                     AbortParse = true;
                 }
 
-                if (AbortParse) { return null; }
+                if (AbortParse) { return false; }
 
                 parseTree.Add(node);
             }
           
-            return parseTree;
+            return true;
         }
 
         // TODO: This function seems to do two things; one) break a string of nodes into "sentences" terminated by ";"

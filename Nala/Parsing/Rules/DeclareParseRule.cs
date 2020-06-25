@@ -38,11 +38,11 @@ namespace NathanWiles.Nala.Parsing.Rules
                     return false;
                 }
                 if (sentence[3].value != "]") { new ParseError(this, sentence[3], "Expected closing bracket.").Report(); return false; }
-                if (sentence[4].type != TokenType.Identifier) { new ParseError(this, sentence[4], "Expected identifier."); return false; }
+                if (sentence[4].type != TokenType.Identifier) { new ParseError(this, sentence[4], "Expected identifier.").Report(); return false; }
             }
 
             // Declarations can only be 3 or 6 tokesn in length;
-            else new ParseError(this, sentence[0], "Wrong number of tokens.").Report();
+            else { new ParseError(this, sentence[0], "Wrong number of tokens.").Report(); return false; }
 
             //A declaration should always end with a ";".
             if (sentence[sentence.Count - 1].value != ";") { new ParseError(this, sentence[sentence.Count - 1], "Expected ';'.").Report(); return false; }

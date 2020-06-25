@@ -33,7 +33,8 @@ namespace NathanWiles.Nala.Parsing.NodeBuilders
 
             List<NalaToken> afterOpeningBrace = parser.GetNextSentence(closeParenPos + 2, sentence, true);
 
-            condition.gotoTrue = parser.ProcessTokens(afterOpeningBrace);
+            // TODO We're not doing anything if the parse fails -- is that okay here? 
+            parser.ProcessTokens(afterOpeningBrace, out condition.gotoTrue);
 
             return condition;
         }

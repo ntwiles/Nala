@@ -40,10 +40,13 @@ namespace NathanWiles.Nala
 
             if (nalaTokens == null) { return false; }
 
+            bool lexingSucceeded = false;
+            bool parsingSucceeded = false;
+
             // Parse tokens into parse tree.
             try
             {
-                nalaParseTree = parser.ProcessTokens(nalaTokens);
+                parsingSucceeded = parser.ProcessTokens(nalaTokens, out nalaParseTree);
             }
             catch (Exception e)
             {
@@ -51,7 +54,7 @@ namespace NathanWiles.Nala
                 Console.WriteLine(e.Message);
             }
 
-            if (nalaParseTree == null) { return false; }
+            if (!parsingSucceeded) { return false; }
 
             // Execute parse tree.
             try
