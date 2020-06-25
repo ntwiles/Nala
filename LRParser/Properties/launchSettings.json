@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "LRParser": {
+      "commandName": "Project",
+      "commandLineArgs": "sandbox",
+      "workingDirectory": "D:\\OneDrive\\Development\\nala"
+    }
+  }
+}

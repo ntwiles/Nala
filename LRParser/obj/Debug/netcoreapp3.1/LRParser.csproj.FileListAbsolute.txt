@@ -1,0 +1,17 @@
+D:\OneDrive\Development\C#\Nala\LRParser\bin\Debug\netcoreapp3.1\nala.exe
+D:\OneDrive\Development\C#\Nala\LRParser\bin\Debug\netcoreapp3.1\LRParser.exe
+D:\OneDrive\Development\C#\Nala\LRParser\bin\Debug\netcoreapp3.1\LRParser.deps.json
+D:\OneDrive\Development\C#\Nala\LRParser\bin\Debug\netcoreapp3.1\LRParser.runtimeconfig.json
+D:\OneDrive\Development\C#\Nala\LRParser\bin\Debug\netcoreapp3.1\LRParser.runtimeconfig.dev.json
+D:\OneDrive\Development\C#\Nala\LRParser\bin\Debug\netcoreapp3.1\LRParser.dll
+D:\OneDrive\Development\C#\Nala\LRParser\bin\Debug\netcoreapp3.1\LRParser.pdb
+D:\OneDrive\Development\C#\Nala\LRParser\bin\Debug\netcoreapp3.1\nala.dll
+D:\OneDrive\Development\C#\Nala\LRParser\bin\Debug\netcoreapp3.1\nala.pdb
+D:\OneDrive\Development\C#\Nala\LRParser\obj\Debug\netcoreapp3.1\LRParser.csprojAssemblyReference.cache
+D:\OneDrive\Development\C#\Nala\LRParser\obj\Debug\netcoreapp3.1\LRParser.AssemblyInfoInputs.cache
+D:\OneDrive\Development\C#\Nala\LRParser\obj\Debug\netcoreapp3.1\LRParser.AssemblyInfo.cs
+D:\OneDrive\Development\C#\Nala\LRParser\obj\Debug\netcoreapp3.1\LRParser.csproj.CoreCompileInputs.cache
+D:\OneDrive\Development\C#\Nala\LRParser\obj\Debug\netcoreapp3.1\LRParser.csproj.CopyComplete
+D:\OneDrive\Development\C#\Nala\LRParser\obj\Debug\netcoreapp3.1\LRParser.dll
+D:\OneDrive\Development\C#\Nala\LRParser\obj\Debug\netcoreapp3.1\LRParser.pdb
+D:\OneDrive\Development\C#\Nala\LRParser\obj\Debug\netcoreapp3.1\LRParser.genruntimeconfig.cache

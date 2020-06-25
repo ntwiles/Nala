@@ -1,0 +1,16 @@
+D:\OneDrive\Development\C#\Nala\NalaCLI\obj\Debug\netcoreapp3.1\NalaCLI.csprojAssemblyReference.cache
+D:\OneDrive\Development\C#\Nala\NalaCLI\obj\Debug\netcoreapp3.1\NalaCLI.AssemblyInfoInputs.cache
+D:\OneDrive\Development\C#\Nala\NalaCLI\obj\Debug\netcoreapp3.1\NalaCLI.AssemblyInfo.cs
+D:\OneDrive\Development\C#\Nala\NalaCLI\obj\Debug\netcoreapp3.1\NalaCLI.csproj.CoreCompileInputs.cache
+D:\OneDrive\Development\C#\Nala\NalaCLI\bin\Debug\netcoreapp3.1\NalaCLI.exe
+D:\OneDrive\Development\C#\Nala\NalaCLI\bin\Debug\netcoreapp3.1\NalaCLI.deps.json
+D:\OneDrive\Development\C#\Nala\NalaCLI\bin\Debug\netcoreapp3.1\NalaCLI.runtimeconfig.json
+D:\OneDrive\Development\C#\Nala\NalaCLI\bin\Debug\netcoreapp3.1\NalaCLI.runtimeconfig.dev.json
+D:\OneDrive\Development\C#\Nala\NalaCLI\bin\Debug\netcoreapp3.1\NalaCLI.dll
+D:\OneDrive\Development\C#\Nala\NalaCLI\bin\Debug\netcoreapp3.1\NalaCLI.pdb
+D:\OneDrive\Development\C#\Nala\NalaCLI\bin\Debug\netcoreapp3.1\nala.dll
+D:\OneDrive\Development\C#\Nala\NalaCLI\bin\Debug\netcoreapp3.1\nala.pdb
+D:\OneDrive\Development\C#\Nala\NalaCLI\obj\Debug\netcoreapp3.1\NalaCLI.csproj.CopyComplete
+D:\OneDrive\Development\C#\Nala\NalaCLI\obj\Debug\netcoreapp3.1\NalaCLI.dll
+D:\OneDrive\Development\C#\Nala\NalaCLI\obj\Debug\netcoreapp3.1\NalaCLI.pdb
+D:\OneDrive\Development\C#\Nala\NalaCLI\obj\Debug\netcoreapp3.1\NalaCLI.genruntimeconfig.cache

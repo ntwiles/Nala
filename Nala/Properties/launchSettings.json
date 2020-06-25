@@ -1,0 +1,14 @@
+{
+  "profiles": {
+    "Laptop": {
+      "commandName": "Project",
+      "commandLineArgs": "hilo -debug",
+      "workingDirectory": "C:\\Users\\ntwil\\OneDrive\\Development\\nala"
+    },
+    "Desktop": {
+      "commandName": "Project",
+      "commandLineArgs": "sandbox -debug",
+      "workingDirectory": "D:\\OneDrive\\Development\\nala"
+    }
+  }
+}

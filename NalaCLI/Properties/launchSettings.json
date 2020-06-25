@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "NalaCLI": {
+      "commandName": "Project",
+      "commandLineArgs": "sandbox -debug",
+      "workingDirectory": "D:\\OneDrive\\Development\\nala"
+    }
+  }
+}

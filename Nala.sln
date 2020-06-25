@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29709.97
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nala", "Nala\Nala.csproj", "{3FD30DB1-C843-4D9C-96DA-961C60355A31}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Nala IDE", "Nala IDE\Nala IDE.csproj", "{C8285088-3D67-49B2-AB00-469388725F16}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3FD30DB1-C843-4D9C-96DA-961C60355A31} = {3FD30DB1-C843-4D9C-96DA-961C60355A31}
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LRParser", "LRParser\LRParser.csproj", "{C58B0B78-51DA-462D-A932-EEA9A1C8FCD5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3FD30DB1-C843-4D9C-96DA-961C60355A31} = {3FD30DB1-C843-4D9C-96DA-961C60355A31}
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NalaCLI", "NalaCLI\NalaCLI.csproj", "{AE9A5882-1D07-4647-A222-EA9DB64C31B5}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3FD30DB1-C843-4D9C-96DA-961C60355A31} = {3FD30DB1-C843-4D9C-96DA-961C60355A31}
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NalaWeb", "NalaWeb\NalaWeb.csproj", "{23B3449C-C589-4854-A727-30325656CFCE}"
+	ProjectSection(ProjectDependencies) = postProject
+		{3FD30DB1-C843-4D9C-96DA-961C60355A31} = {3FD30DB1-C843-4D9C-96DA-961C60355A31}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3FD30DB1-C843-4D9C-96DA-961C60355A31}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FD30DB1-C843-4D9C-96DA-961C60355A31}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FD30DB1-C843-4D9C-96DA-961C60355A31}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FD30DB1-C843-4D9C-96DA-961C60355A31}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8285088-3D67-49B2-AB00-469388725F16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8285088-3D67-49B2-AB00-469388725F16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8285088-3D67-49B2-AB00-469388725F16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8285088-3D67-49B2-AB00-469388725F16}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C58B0B78-51DA-462D-A932-EEA9A1C8FCD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C58B0B78-51DA-462D-A932-EEA9A1C8FCD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C58B0B78-51DA-462D-A932-EEA9A1C8FCD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C58B0B78-51DA-462D-A932-EEA9A1C8FCD5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE9A5882-1D07-4647-A222-EA9DB64C31B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE9A5882-1D07-4647-A222-EA9DB64C31B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE9A5882-1D07-4647-A222-EA9DB64C31B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE9A5882-1D07-4647-A222-EA9DB64C31B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{23B3449C-C589-4854-A727-30325656CFCE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{23B3449C-C589-4854-A727-30325656CFCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{23B3449C-C589-4854-A727-30325656CFCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{23B3449C-C589-4854-A727-30325656CFCE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E6F5399B-B6FA-4A24-A2F6-3A0798E87E38}
+	EndGlobalSection
+EndGlobal

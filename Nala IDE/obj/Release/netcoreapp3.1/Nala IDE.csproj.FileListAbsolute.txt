@@ -1,0 +1,26 @@
+D:\Development\C#\Nala\Nala IDE\bin\Release\netcoreapp3.1\Nala IDE.exe
+D:\Development\C#\Nala\Nala IDE\bin\Release\netcoreapp3.1\Nala IDE.deps.json
+D:\Development\C#\Nala\Nala IDE\bin\Release\netcoreapp3.1\Nala IDE.runtimeconfig.json
+D:\Development\C#\Nala\Nala IDE\bin\Release\netcoreapp3.1\Nala IDE.runtimeconfig.dev.json
+D:\Development\C#\Nala\Nala IDE\bin\Release\netcoreapp3.1\Nala IDE.dll
+D:\Development\C#\Nala\Nala IDE\bin\Release\netcoreapp3.1\Nala IDE.pdb
+D:\Development\C#\Nala\Nala IDE\obj\Release\netcoreapp3.1\Nala IDE.csprojAssemblyReference.cache
+D:\Development\C#\Nala\Nala IDE\obj\Release\netcoreapp3.1\NalaConsoleWindow.baml
+D:\Development\C#\Nala\Nala IDE\obj\Release\netcoreapp3.1\MainWindow.g.cs
+D:\Development\C#\Nala\Nala IDE\obj\Release\netcoreapp3.1\NalaConsoleWindow.g.cs
+D:\Development\C#\Nala\Nala IDE\obj\Release\netcoreapp3.1\App.g.cs
+D:\Development\C#\Nala\Nala IDE\obj\Release\netcoreapp3.1\GeneratedInternalTypeHelper.g.cs
+D:\Development\C#\Nala\Nala IDE\obj\Release\netcoreapp3.1\Nala IDE_MarkupCompile.cache
+D:\Development\C#\Nala\Nala IDE\obj\Release\netcoreapp3.1\Nala IDE_MarkupCompile.lref
+D:\Development\C#\Nala\Nala IDE\obj\Release\netcoreapp3.1\CustomControls\AnalogClockStyle.baml
+D:\Development\C#\Nala\Nala IDE\obj\Release\netcoreapp3.1\CustomControls\CodeEditorStyle.baml
+D:\Development\C#\Nala\Nala IDE\obj\Release\netcoreapp3.1\CustomControls\TextDrawerExampleStyle.baml
+D:\Development\C#\Nala\Nala IDE\obj\Release\netcoreapp3.1\MainWindow.baml
+D:\Development\C#\Nala\Nala IDE\obj\Release\netcoreapp3.1\Themes\Generic.baml
+D:\Development\C#\Nala\Nala IDE\obj\Release\netcoreapp3.1\Nala IDE.g.resources
+D:\Development\C#\Nala\Nala IDE\obj\Release\netcoreapp3.1\NathanWiles.NalaIDE.Properties.Resources.resources
+D:\Development\C#\Nala\Nala IDE\obj\Release\netcoreapp3.1\Nala IDE.csproj.GenerateResource.cache
+D:\Development\C#\Nala\Nala IDE\obj\Release\netcoreapp3.1\Nala IDE.AssemblyInfoInputs.cache
+D:\Development\C#\Nala\Nala IDE\obj\Release\netcoreapp3.1\Nala IDE.AssemblyInfo.cs
+D:\Development\C#\Nala\Nala IDE\obj\Release\netcoreapp3.1\Nala IDE.dll
+D:\Development\C#\Nala\Nala IDE\obj\Release\netcoreapp3.1\Nala IDE.pdb
