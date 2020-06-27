@@ -50,7 +50,7 @@ namespace NathanWiles.Nala.Lexing
             Keywords = new List<string>
             {
                 "echo","echoline","clear",
-                "while", "if", "read"
+                "wiles", "if", "read"
             };
 
             Operators.AddRange(ArithOperators);

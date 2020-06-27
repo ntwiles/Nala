@@ -13,7 +13,7 @@ namespace NathanWiles.Nala.Parsing.Rules
         public override bool Matches(List<NalaToken> sentence, IIOContext ioContext)
         {
             var token = sentence[0];
-            if (token.value == "while")
+            if (token.value == "wiles")
             {
                 return IsProper(sentence, ioContext);
             }

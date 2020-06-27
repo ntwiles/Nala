@@ -20,15 +20,6 @@ namespace NalaWeb.Controllers
     [ApiController]
     public class NalaController : ControllerBase
     {
-
-        [HttpGet]
-        public NalaCode Index()
-        {
-            NalaCode poco = new NalaCode();
-            poco.Content = "This is the message at the index.";
-            return poco;
-        }
-
         [HttpPost]
         public NalaResult TestNala(NalaCode code)
         {
