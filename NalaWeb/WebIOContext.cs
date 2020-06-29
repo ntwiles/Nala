@@ -9,7 +9,9 @@ namespace NalaWeb
 {
     public class WebIOContext : IIOContext
     {
+        private bool waitingForInput;
         public List<string> Output { get; }
+        private string Input;
 
         public WebIOContext()
         {
@@ -18,12 +20,16 @@ namespace NalaWeb
 
         public void Clear()
         {
-            throw new NotImplementedException();
+            Output.Clear();
         }
 
         public string ReadLine()
         {
-            throw new NotImplementedException();
+            waitingForInput = true;
+
+            while (waitingForInput) { }
+
+            return Input;
         }
 
         public void Write(string message)
@@ -34,6 +40,12 @@ namespace NalaWeb
         public void WriteLine(string message)
         {
             Output.Add(message + "<br>");
+        }
+
+        public void SendInput(string input)
+        {
+            Input = input;
+            waitingForInput = false;
         }
     }
 }
