@@ -10,38 +10,33 @@ using Microsoft.Extensions.Options;
 using NathanWiles.Nala;
 
 using NalaWeb.Models;
+using NalaWeb.Hubs;
+using Microsoft.AspNetCore.SignalR;
 
 namespace NalaWeb.Controllers
-{
+{ 
     [Route("api")]
     [ApiController]
     public class NalaController : ControllerBase
     {
-        [HttpPost("nala")]
-        public ActionResult<NalaResult> RunNala(NalaCode code)
+        private readonly IHubContext<NalaHub> hubContext;
+
+        public NalaController (IHubContext<NalaHub> nalaHub)
         {
-            var webIO = new WebIOContext();
-            var result = new NalaResult();
+            this.hubContext = nalaHub;
+        }
+
+        [HttpPost("nala")]
+        public ActionResult UpdateOutputAsync(NalaCode code)
+        {
+            var webIO = new WebIOContext(hubContext);
 
             List<string> lines = code.Content.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None).ToList<string>();
 
             Nala nala = new Nala(lines, webIO);
             nala.Run();
 
-            result.Output = webIO.Output;
-            
-            return Ok(result);
-        }
-
-        [HttpPost("input")]
-        public ActionResult<NalaResult> SubmitInput(NalaInput input)
-        {
-            var result = new NalaResult();
-
-            //webIO.SendInput(input.Content);
-            //result.Output = webIO.Output;
-
-            return Ok(result);
+            return Ok();
         }
     }
 }
