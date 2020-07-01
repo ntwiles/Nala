@@ -111,6 +111,7 @@ namespace NathanWiles.Nala.Interpreting
                     case "*": resolution = Operations.DoMultiply(resolution, rightOperand, ioContext); break;
                     case "-": resolution = Operations.DoSubtract(resolution, rightOperand, ioContext); break;
                     case "/": resolution = Operations.DoDivide(resolution, rightOperand, ioContext); break;
+                    case "%": resolution = Operations.DoModulu(resolution, rightOperand, ioContext); break;
                 }
             }
 

@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.SignalR;
 
 using NathanWiles.Nala.IO;
+using NathanWiles.Nala.Interpreting;
+using NathanWiles.Nala.Errors;
 
 using NalaWeb.Hubs;
 
@@ -29,15 +31,16 @@ namespace NalaWeb
         public void Clear()
         {
             Output.Clear();
+
+            hubContext
+                .Clients
+                .All
+                .SendAsync("OutputChange", Output);
         }
 
         public string ReadLine()
         {
-            waitingForInput = true;
-
-            while (waitingForInput) { }
-
-            return Input;
+            throw new Exception("The 'read' keyword is not supported in the web version of nala.");
         }
 
         public void Write(string message)

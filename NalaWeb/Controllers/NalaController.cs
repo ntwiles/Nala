@@ -27,7 +27,7 @@ namespace NalaWeb.Controllers
         }
 
         [HttpPost("nala")]
-        public ActionResult UpdateOutputAsync(NalaCode code)
+        public ActionResult RunNala(NalaCode code)
         {
             var webIO = new WebIOContext(hubContext);
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using NathanWiles.Nala.IO;
 using NathanWiles.Nala.Lexing;
@@ -11,6 +12,8 @@ namespace NathanWiles.Nala.Parsing.NodeBuilders
         public override ParseNode BuildNode(List<NalaToken> expression, IIOContext ioContext)
         {
             ExpressionNode expressionNode = new ExpressionNode();
+
+            expressionNode.isRelational = expression.Any(e => e.value == "==");
 
             for (int i = 0; i < expression.Count; i++)
             {

@@ -25,7 +25,7 @@ namespace NathanWiles.Nala.Lexing
 
             ArithOperators = new List<string>
             {
-                "+","-","*","/"
+                "+","-","*","/","%"
             };
 
             AssignOperators = new List<string>

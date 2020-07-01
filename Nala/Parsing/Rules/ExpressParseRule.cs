@@ -38,7 +38,7 @@ namespace NathanWiles.Nala.Parsing.Rules
                 //The next token should be an operator.
                 if (!TokenLookups.Operators.Contains(expression[position].value))
                 {
-                    new ParseError(this, expression[position], "Expected arithmatic operator but got " + expression[position].value).Report(ioContext);
+                    new ParseError(this, expression[position], $"Expected arithmatic operator but got '{expression[position].value}'").Report(ioContext);
                     return false;
                 }
                 else

@@ -183,6 +183,17 @@ namespace NathanWiles.Nala.Interpreting
             return null;
         }
 
+        public static object DoModulu(object leftOperand, object rightOperand, IIOContext ioContext)
+        {
+            if (leftOperand is int) return (int)leftOperand % (int)rightOperand;
+            if (leftOperand is string)
+            {
+                new RuntimeError("Cannot use \"/\" operator between two strings.").Report(ioContext);
+            }
+
+            return null;
+        }
+
         // Comparison Operations
 
         public static bool DoComparison(string symbol, object leftOperand, object rightOperand, IIOContext ioContext)
