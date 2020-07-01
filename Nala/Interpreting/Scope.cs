@@ -8,12 +8,14 @@ namespace NathanWiles.Nala.Interpreting
     {
         public Scope ParentScope { get; }
         private Dictionary<string, object> variables;
+        public bool ConditionChainExecuted;
 
         public Scope(Scope ParentScope)
         {
             this.ParentScope = ParentScope;
 
             variables = new Dictionary<string, object>();
+            ConditionChainExecuted = false;
         }
 
         public bool ContainsIdentifier(string identifier)

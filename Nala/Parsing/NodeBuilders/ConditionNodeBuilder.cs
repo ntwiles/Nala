@@ -15,6 +15,8 @@ namespace NathanWiles.Nala.Parsing.NodeBuilders
             int openParenPos = 0;
             int closeParenPos = 0;
 
+            condition.isOr = sentence[0].value == "or";
+
             for (int i = 0; i < sentence.Count; i++)
             {
                 var token = sentence[i];

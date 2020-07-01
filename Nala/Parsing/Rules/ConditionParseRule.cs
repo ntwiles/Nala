@@ -13,7 +13,8 @@ namespace NathanWiles.Nala.Parsing.Rules
         public override bool Matches(List<NalaToken> sentence, IIOContext ioContext)
         {
             var token = sentence[0];
-            if (token.value == "if")
+
+            if (token.value == "if" || token.value == "or")
             {
                 return IsProper(sentence, ioContext);
             }

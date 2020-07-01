@@ -72,6 +72,7 @@ namespace NathanWiles.Nala.Parsing
     public class ConditionNode : ParseNode
     {
         public ExpressionNode expression;
+        public bool isOr;
         public List<ParseNode> gotoTrue;
     }
 

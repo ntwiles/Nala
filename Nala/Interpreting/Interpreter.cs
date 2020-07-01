@@ -24,18 +24,26 @@ namespace NathanWiles.Nala.Interpreting
         {
             var scope = new Scope(parentScope);
 
-            foreach(var node in parseTree)
-            { 
+            ParseNode previousNode = null;
+
+            scope.ConditionChainExecuted = false;
+
+            foreach (ParseNode node in parseTree)
+            {
+                if (!(node is ConditionNode)) scope.ConditionChainExecuted = false;
+
                 switch (node)
                 {
                     case DeclarationNode    decl: interpretDeclaration(decl, scope); break;
                     case AssignmentNode   assign: interpretAssignment(assign, scope); break;
                     case EchoNode           echo: interpretEcho(echo, scope); break;
                     case ReadNode           read: interpretRead(read, scope); break;
-                    case ConditionNode condition: interpretConditional(condition, scope); break;
+                    case ConditionNode condition: interpretConditional(previousNode, condition, scope); break;
                     case WhileLoopNode      loop: interpretWhileLoop(loop, scope); break;
                     case ClearNode         clear: interpretClear(); break;
                 }
+
+                previousNode = node;
 
                 if (AbortExecution) { return false; }
             }
@@ -180,13 +188,23 @@ namespace NathanWiles.Nala.Interpreting
             ioContext.Clear();
         }
 
-        private void interpretConditional(ConditionNode condition, Scope currentScope)
+        private void interpretConditional(ParseNode previousNode, ConditionNode condition, Scope scope)
         {
-            bool resolution = Expressions.ResolveRelationalExpression(condition.expression, currentScope, ioContext);
+            if (condition.isOr)
+            {
+                if (!(previousNode is ConditionNode)) throw new Exception("Cannot begin condition chain with 'or' keyword.");
 
-            List<ParseNode> gotoTrue = condition.gotoTrue;
+                if (scope.ConditionChainExecuted) return;
+            }
+            else scope.ConditionChainExecuted = false;
 
-            if (resolution) Execute(condition.gotoTrue, currentScope);
+            bool resolution = Expressions.ResolveRelationalExpression(condition.expression, scope, ioContext);
+
+            if (resolution)
+            {
+                scope.ConditionChainExecuted = true;
+                Execute(condition.gotoTrue, scope);
+            }
         }
 
         private void interpretWhileLoop(WhileLoopNode loop, Scope currentScope)
