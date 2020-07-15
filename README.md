@@ -3,15 +3,12 @@
  Nala is an programming language designed for use in easily developing console applications. This repository includes a lexer, parser, and interpreter written in C#.
 
 ## Features
-### Present
- - Basic console i/o.
- - Arithmetic and relational operations.
- - While loops.
- - Single-dimensional arrays.
- 
-### Future
- - Scope
- - Functions
+- [x] Basic console i/o.
+- [x] Arithmetic and relational operations.
+- [x] While loops.
+- [x] Single-dimensional arrays.
+- [x] Scope
+- [ ] Functions
       
 ## Documentation
 The [Nala Wiki](https://github.com/ntwiles/Nala/wiki), which is still being written, serves as Nala's documentation.
