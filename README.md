@@ -11,7 +11,7 @@
 - [ ] Functions
       
 ## Documentation
-The [Nala Wiki](https://github.com/ntwiles/Nala/wiki), which is still being written, serves as Nala's documentation.
+Coming soon.
  
 ## State
 In its present state, the interpretor should execute most properly-written code without complaint (with a few not-yet-implemented exceptions). Some malformed operations will be missed by the parser and interpreter and will result in a crash or in erratic behavior. This is being worked on before moving on to support for functions and custom types. 
